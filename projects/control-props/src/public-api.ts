@@ -1,7 +1,3 @@
-/*
- * Public API Surface of control-props
- */
-
-export * from './lib/control-props.service';
-export * from './lib/control-props.component';
-export * from './lib/control-props.module';
+export * from './lib/form-control-with-props';
+export * from './lib/form-group-with-props';
+export * from './lib/props-aware.type';

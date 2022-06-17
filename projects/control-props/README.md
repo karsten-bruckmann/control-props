@@ -1,24 +1,51 @@
-# ControlProps
+# @kbru/control-props
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+Extend Angular's reactive `FormGroups` and `FormControls` with custom properties.
 
-## Code scaffolding
+Use Cases:
 
-Run `ng generate component component-name --project control-props` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project control-props`.
-> Note: Don't forget to add `--project control-props` or else it will be added to the default project in your `angular.json` file. 
+- Mark a form field as visible/invisible instead of enabled/disabled without affecting the behaviour of the form.
+- Attach valid values to a control for the template to display them. Useful for `select`, `radio`, ...
 
-## Build
+## Installation
 
-Run `ng build control-props` to build the project. The build artifacts will be stored in the `dist/` directory.
+```shell
+npm install @kbru/control-props
+```
 
-## Publishing
+## Usage
 
-After building your library with `ng build control-props`, go to the dist folder `cd dist/control-props` and run `npm publish`.
+```typescript
+import { FormGroupWithProps } from "@kbru/control-props";
+import { FormControlWithProps } from "@kbru/control-props";
 
-## Running unit tests
+interface Props {
+  visible: boolean;
+  options?: string[];
+}
 
-Run `ng test control-props` to execute the unit tests via [Karma](https://karma-runner.github.io).
+export class Component {
+  form = new FormGroupWithProps<Props>(
+    { visible: true },
+    {
+      field: new FormControlWithProps<Props>({ visible: false }),
+      select: new FormControlWithProps<Props>({
+        visible: true,
+        options: ["Foo", "Bar"],
+      }),
+    }
+  );
+}
+```
 
-## Further help
+```html
+<form *ngIf="form.prop('visible')" [formGroup]="form">
+  <input *ngIf="form.get('field').prop('visible')" formControlName="form" />
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  <select *ngIf="form.get('select').prop('visible')" formControlName="form">
+    <ng-container *ngIf="form.get('select').prop('options') as options">
+      <option *ngFor="let option of options">{{ option }}</option>
+    </ng-container>
+  </select>
+</form>
+```
