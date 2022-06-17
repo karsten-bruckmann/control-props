@@ -3,11 +3,11 @@
     "author": "Karsten Bruckmann <karsten.bruckmann@gmail.com>",
     "license": "MIT",
     "description": "Define custom properties on Angular's reactive form controls",
-    "version": "13.0.0",
-    "homepage": "https://github.com/karsten-bruckmann/kbru-os/tree/main/libs/utils/control-props#readme",
-    "repository": "https://github.com/karsten-bruckmann/kbru-os/tree/main/libs/utils/control-props",
+    "version": "12.0.1",
+    "homepage": "https://github.com/karsten-bruckmann/control-props/tree/main/projects/control-props",
+    "repository": "https://github.com/karsten-bruckmann/control-props",
     "bugs": {
-        "url": "https://github.com/karsten-bruckmann/kbru-os/labels/control-props"
+        "url": "https://github.com/karsten-bruckmann/control-props/issues"
     },
     "peerDependencies": {
         "@angular/forms": "^12.0.0"
