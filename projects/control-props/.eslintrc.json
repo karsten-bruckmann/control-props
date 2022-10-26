@@ -6,8 +6,8 @@
             "files": ["*.ts"],
             "parserOptions": {
                 "project": [
-                    "projects/control-props/tsconfig.lib.json",
-                    "projects/control-props/tsconfig.spec.json"
+                    "./tsconfig.lib.json",
+                    "./tsconfig.spec.json"
                 ],
                 "createDefaultProgram": true
             },
