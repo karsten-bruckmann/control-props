@@ -8,11 +8,10 @@ export function propsAware<TBase, TProps>(
     initialProps: TProps
 ): PropsAware<TBase, TProps> {
     const props: TProps = { ...initialProps };
-    return {
-        ...base,
-        prop: <K extends keyof TProps>(key: K) => props[key],
-        setProp: <K extends keyof TProps>(key: K, value: TProps[K]) => {
-            props[key] = value;
-        },
+    const extended = base as PropsAware<TBase, TProps>;
+    extended.prop = <K extends keyof TProps>(key: K) => props[key];
+    extended.setProp = <K extends keyof TProps>(key: K, value: TProps[K]) => {
+        props[key] = value;
     };
+    return extended;
 }
